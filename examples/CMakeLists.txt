@@ -2,7 +2,7 @@
 # Example Applications
 # ==============================================================================
 # This CMakeLists.txt builds example applications that demonstrate how to use
-# the scaffold_project library.
+# the cobs library.
 #
 # Users can:
 # - Add new example applications by creating new executables
@@ -15,25 +15,25 @@
 # Build only on POSIX-like systems (excluding Zephyr).
 if(UNIX AND NOT CMAKE_SYSTEM_NAME STREQUAL "Zephyr")
     # Create the CLI example executable
-    add_executable(ScaffoldProjectExample
+    add_executable(CobsExample
         example.c
     )
 
-    # Link with the scaffold_project library
+    # Link with the cobs library
     # Using the alias target ensures proper namespacing
-    target_link_libraries(ScaffoldProjectExample
+    target_link_libraries(CobsExample
         PRIVATE
-            ScaffoldProject
+            Cobs
     )
 
     # Set C99 standard for the example
-    target_compile_features(ScaffoldProjectExample
+    target_compile_features(CobsExample
         PRIVATE
             c_std_99
     )
 
     # Add compiler warnings for the example (same as library)
-    target_compile_options(ScaffoldProjectExample
+    target_compile_options(CobsExample
         PRIVATE
             # GCC and Clang warnings
             $<$<OR:$<C_COMPILER_ID:GNU>,$<C_COMPILER_ID:Clang>>:
@@ -51,21 +51,21 @@ endif()
 # ==============================================================================
 # Example: Embedded-Safe Application
 # ==============================================================================
-add_executable(ScaffoldProjectEmbeddedExample
+add_executable(CobsEmbeddedExample
     example_embedded.c
 )
 
-target_link_libraries(ScaffoldProjectEmbeddedExample
+target_link_libraries(CobsEmbeddedExample
     PRIVATE
-        ScaffoldProject::ScaffoldProject
+        Cobs::Cobs
 )
 
-target_compile_features(ScaffoldProjectEmbeddedExample
+target_compile_features(CobsEmbeddedExample
     PRIVATE
         c_std_99
 )
 
-target_compile_options(ScaffoldProjectEmbeddedExample
+target_compile_options(CobsEmbeddedExample
     PRIVATE
         $<$<OR:$<C_COMPILER_ID:GNU>,$<C_COMPILER_ID:Clang>>:
             -Wall
@@ -82,16 +82,16 @@ target_compile_options(ScaffoldProjectEmbeddedExample
 # ==============================================================================
 # To add a new example application, copy and modify this template:
 #
-# add_executable(example_scaffold_project_myexample
+# add_executable(example_cobs_myexample
 #     myexample.c
 # )
 #
-# target_link_libraries(example_scaffold_project_myexample
+# target_link_libraries(example_cobs_myexample
 #     PRIVATE
-#         ScaffoldProject::ScaffoldProject
+#         Cobs::Cobs
 # )
 #
-# target_compile_features(example_scaffold_project_myexample
+# target_compile_features(example_cobs_myexample
 #     PRIVATE
 #         c_std_99
 # )
@@ -103,7 +103,7 @@ target_compile_options(ScaffoldProjectEmbeddedExample
 # Uncomment the section below if you want to install example executables.
 
 # install(
-#     TARGETS ScaffoldProjectExample ScaffoldProjectEmbeddedExample
+#     TARGETS CobsExample CobsEmbeddedExample
 #     RUNTIME
 #         DESTINATION ${CMAKE_INSTALL_BINDIR}
 #         COMPONENT Examples

@@ -195,8 +195,8 @@ print_success "Installation completed successfully!"
 echo ""
 print_info "Installation locations:"
 print_info "  - Library: $INSTALL_PREFIX/lib/"
-print_info "  - Headers: $INSTALL_PREFIX/include/scaffold_project/"
-print_info "  - CMake config: $INSTALL_PREFIX/lib/cmake/scaffold_project/"
+print_info "  - Headers: $INSTALL_PREFIX/include/cobs/"
+print_info "  - CMake config: $INSTALL_PREFIX/lib/cmake/cobs/"
 echo ""
 
 # Add usage instructions
@@ -212,6 +212,6 @@ elif [ "$INSTALL_PREFIX" != "/usr/local" ] && [ "$INSTALL_PREFIX" != "/usr" ]; t
 fi
 
 print_info "To use in your CMakeLists.txt:"
-echo "  find_package(ScaffoldProject REQUIRED)"
-echo "  target_link_libraries(YourTarget PRIVATE ScaffoldProject::ScaffoldProject)"
+echo "  find_package(Cobs REQUIRED)"
+echo "  target_link_libraries(YourTarget PRIVATE Cobs::Cobs)"
 echo ""

@@ -1,7 +1,7 @@
 @PACKAGE_INIT@
 
 # ==============================================================================
-# scaffold_project CMake Package Configuration File
+# cobs CMake Package Configuration File
 # ==============================================================================
 
 # ==============================================================================
@@ -16,22 +16,22 @@ include(CMakeFindDependencyMacro)
 # Component Support
 # ==============================================================================
 # (Optional: Only keep this if you actually separate your library into 
-#  distinct targets like ScaffoldProject::Core and ScaffoldProject::Utils)
+#  distinct targets like Cobs::Core and Cobs::Utils)
 
-set(_ScaffoldProject_supported_components Runtime Development)
+set(_Cobs_supported_components Runtime Development)
 
-foreach(_comp ${ScaffoldProject_FIND_COMPONENTS})
-    if(NOT _comp IN_LIST _ScaffoldProject_supported_components)
-        set(ScaffoldProject_FOUND False)
-        set(ScaffoldProject_NOT_FOUND_MESSAGE "Unsupported component: ${_comp}")
+foreach(_comp ${Cobs_FIND_COMPONENTS})
+    if(NOT _comp IN_LIST _Cobs_supported_components)
+        set(Cobs_FOUND False)
+        set(Cobs_NOT_FOUND_MESSAGE "Unsupported component: ${_comp}")
     endif()
 endforeach()
 
 # ==============================================================================
 # Import Targets
 # ==============================================================================
-if(NOT TARGET ScaffoldProject::ScaffoldProject)
-    include("${CMAKE_CURRENT_LIST_DIR}/ScaffoldProjectTargets.cmake")
+if(NOT TARGET Cobs::Cobs)
+    include("${CMAKE_CURRENT_LIST_DIR}/CobsTargets.cmake")
 endif()
 
 # ==============================================================================
@@ -39,13 +39,13 @@ endif()
 # ==============================================================================
 
 # 1. Main Library Variable
-set(ScaffoldProject_LIBRARIES ScaffoldProject::ScaffoldProject)
+set(Cobs_LIBRARIES Cobs::Cobs)
 
 # 2. Include Dirs (Using set_and_check for safety)
 #    Requires PATH_VARS CMAKE_INSTALL_INCLUDEDIR in CMakeLists.txt
-set_and_check(ScaffoldProject_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@")
+set_and_check(Cobs_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@")
 
 # ==============================================================================
 # Finalization
 # ==============================================================================
-check_required_components(ScaffoldProject)
+check_required_components(Cobs)

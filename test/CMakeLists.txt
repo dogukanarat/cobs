@@ -44,7 +44,7 @@ endif()
 set(TEST_NAME ${PROJECT_NAME}UnitTest)
 
 add_executable(${TEST_NAME} 
-    ${CMAKE_CURRENT_SOURCE_DIR}/test_scaffold_project.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_cobs.c
 )
 
 target_link_libraries(${TEST_NAME}

@@ -1,0 +1,23 @@
+/* version.h.in - one line definition */
+
+/* All Rights Reserved */
+
+#ifndef INC_COBS_VERSION_H
+#define INC_COBS_VERSION_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define COBS_VERSION_MAJOR @Cobs_VERSION_MAJOR@
+#define COBS_VERSION_MINOR @Cobs_VERSION_MINOR@
+#define COBS_VERSION_PATCH @Cobs_VERSION_PATCH@
+#define COBS_VERSION_STRING "@Cobs_VERSION@"
+
+#define COBS_VERSION_GIT "@GIT_VERSION@"
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* INC_COBS_VERSION_H */

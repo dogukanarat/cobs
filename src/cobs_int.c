@@ -1,4 +1,4 @@
-/* scaffold_project_int.c - one line definition */
+/* cobs_int.c - one line definition */
 
 /* All Rights Reserved */
 
@@ -23,4 +23,4 @@
 /* Functions */
 
 /* Placeholder to prevent empty translation unit warning */
-typedef int scaffold_project_int_placeholder;
+typedef int cobs_int_placeholder;

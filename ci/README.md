@@ -26,7 +26,7 @@ Performs a clean debug build with tests enabled and runs the test suite.
 
 **Output:**
 - Build artifacts in `build/`
-- Test executable: `build/test/ScaffoldProjectUnitTest`
+- Test executable: `build/test/CobsUnitTest`
 - Detailed test output with pass/fail status
 
 ---
@@ -57,7 +57,7 @@ Performs an optimized release build of the project.
 - CI/CD release pipelines
 
 **Output:**
-- Optimized library: `build/libscaffoldproject.a`
+- Optimized library: `build/libcobs.a`
 - No debug symbols (smaller binary size)
 - Maximum optimization enabled
 
@@ -101,18 +101,18 @@ Builds and installs the library to the system or a custom location.
 **Installation locations:**
 - **Default** (`/usr/local`):
   - Libraries: `/usr/local/lib/`
-  - Headers: `/usr/local/include/scaffold_project/`
-  - CMake config: `/usr/local/lib/cmake/scaffold_project/`
+  - Headers: `/usr/local/include/cobs/`
+  - CMake config: `/usr/local/lib/cmake/cobs/`
 
 - **User install** (`~/.local`):
   - Libraries: `~/.local/lib/`
-  - Headers: `~/.local/include/scaffold_project/`
-  - CMake config: `~/.local/lib/cmake/scaffold_project/`
+  - Headers: `~/.local/include/cobs/`
+  - CMake config: `~/.local/lib/cmake/cobs/`
 
 - **Custom prefix** (`/opt/mylibs`):
   - Libraries: `/opt/mylibs/lib/`
-  - Headers: `/opt/mylibs/include/scaffold_project/`
-  - CMake config: `/opt/mylibs/lib/cmake/scaffold_project/`
+  - Headers: `/opt/mylibs/include/cobs/`
+  - CMake config: `/opt/mylibs/lib/cmake/cobs/`
 
 **Use cases:**
 - System-wide installation
@@ -127,7 +127,7 @@ Builds and installs the library to the system or a custom location.
 ### Local Development
 ```bash
 # Make changes to code
-vim src/scaffold_project.c
+vim src/cobs.c
 
 # Test changes
 ./ci/debug.sh
@@ -169,11 +169,11 @@ cmake_minimum_required(VERSION 3.14)
 project(MyProject)
 
 # Find the installed library
-find_package(ScaffoldProject REQUIRED)
+find_package(Cobs REQUIRED)
 
 # Link your executable against it
 add_executable(myapp main.c)
-target_link_libraries(myapp PRIVATE ScaffoldProject::ScaffoldProject)
+target_link_libraries(myapp PRIVATE Cobs::Cobs)
 ```
 
 If installed to a custom prefix, set `CMAKE_PREFIX_PATH`:
@@ -229,7 +229,7 @@ CMAKE_INSTALL_PREFIX=$HOME/.local ./ci/install.sh --no-sudo
 
 ### Tests fail in debug.sh
 - Review test output for specific failures
-- Check test assertions in `test/test_scaffold_project.c`
+- Check test assertions in `test/test_cobs.c`
 - Verify library functionality is implemented
 
 ---

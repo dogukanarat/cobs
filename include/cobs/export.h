@@ -2,8 +2,8 @@
 
 /* All Rights Reserved */
 
-#ifndef INC_SCAFFOLD_PROJECT_EXPORT_H
-#define INC_SCAFFOLD_PROJECT_EXPORT_H
+#ifndef INC_COBS_EXPORT_H
+#define INC_COBS_EXPORT_H
 
 /* Includes */
 
@@ -19,15 +19,15 @@ extern "C" {
 /* Definitions */
 
 #if defined(_WIN32) || defined(__CYGWIN__)
-#ifdef SCAFFOLD_PROJECT_EXPORTS
-#define SCAFFOLD_PROJECT_API __declspec(dllexport)
+#ifdef COBS_EXPORTS
+#define COBS_API __declspec(dllexport)
 #else
-#define SCAFFOLD_PROJECT_API __declspec(dllimport)
+#define COBS_API __declspec(dllimport)
 #endif
 #elif defined(__GNUC__) && __GNUC__ >= 4
-#define SCAFFOLD_PROJECT_API __attribute__((visibility("default")))
+#define COBS_API __attribute__((visibility("default")))
 #else
-#define SCAFFOLD_PROJECT_API
+#define COBS_API
 #endif
 
 /* Types */
@@ -40,4 +40,4 @@ extern "C" {
 }
 #endif
 
-#endif /* INC_SCAFFOLD_PROJECT_EXPORT_H */
+#endif /* INC_COBS_EXPORT_H */

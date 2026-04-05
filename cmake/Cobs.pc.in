@@ -1,5 +1,5 @@
-# pkg-config file for ScaffoldProject
-# This file allows other projects to discover ScaffoldProject using pkg-config
+# pkg-config file for Cobs
+# This file allows other projects to discover Cobs using pkg-config
 
 prefix=@CMAKE_INSTALL_PREFIX@
 exec_prefix=${prefix}
@@ -10,12 +10,12 @@ includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
 Name: @PROJECT_NAME@
 Description: @PROJECT_DESCRIPTION@
 Version: @PROJECT_VERSION@
-URL: https://github.com/dogukanarat/libscaffoldproject
+URL: https://github.com/dogukanarat/libcobs
 
 # Libraries to link against
-# CRITICAL FIX: Changed -lScaffoldProject to -lscaffoldproject
+# CRITICAL FIX: Changed -lCobs to -lcobs
 # matches the OUTPUT_NAME set in CMakeLists.txt
-Libs: -L${libdir} -lscaffoldproject
+Libs: -L${libdir} -lcobs
 
 # Private libraries only needed when linking statically
 Libs.private:

@@ -80,7 +80,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: scaffold_project-${{ matrix.compiler }}-${{ matrix.library_type }}
+          name: cobs-${{ matrix.compiler }}-${{ matrix.library_type }}
           path: |
-            build/libscaffoldproject.*
-            build/test/ScaffoldProjectUnitTest
+            build/libcobs.*
+            build/test/CobsUnitTest

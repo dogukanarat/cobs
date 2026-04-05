@@ -9,7 +9,7 @@ include(GitVersion)
 
 get_git_version(PROJECT_SEMVER PROJECT_GIT_STRING)
 
-project(ScaffoldProject
+project(Cobs
     VERSION ${PROJECT_SEMVER}
     DESCRIPTION "A scaffold library for CMake projects"
     LANGUAGES C
@@ -49,14 +49,14 @@ endif()
 # ==============================================================================
 
 configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/scaffold_project/config.h.in
-    ${CMAKE_CURRENT_BINARY_DIR}/include/scaffold_project/config.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/cobs/config.h.in
+    ${CMAKE_CURRENT_BINARY_DIR}/include/cobs/config.h
     @ONLY
 )
 
 configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/scaffold_project/version.h.in
-    ${CMAKE_CURRENT_BINARY_DIR}/include/scaffold_project/version.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/cobs/version.h.in
+    ${CMAKE_CURRENT_BINARY_DIR}/include/cobs/version.h
     @ONLY
 )
 
@@ -69,8 +69,8 @@ add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME}
     PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/scaffold_project.c
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/scaffold_project_int.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/cobs.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/cobs_int.c
 )
 
 # ==============================================================================
@@ -95,7 +95,7 @@ set_target_properties(${PROJECT_NAME}
     PROPERTIES
         VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
-        OUTPUT_NAME "scaffoldproject"
+        OUTPUT_NAME "cobs"
 )
 
 # ==============================================================================
@@ -150,7 +150,7 @@ install(
 
 # Install static headers from source
 install(
-    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/scaffold_project
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/cobs
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     COMPONENT Development
     FILES_MATCHING PATTERN "*.h"
@@ -159,9 +159,9 @@ install(
 # Install generated headers from binary dir (Critical Fix!)
 install(
     FILES 
-        ${CMAKE_CURRENT_BINARY_DIR}/include/scaffold_project/config.h
-        ${CMAKE_CURRENT_BINARY_DIR}/include/scaffold_project/version.h
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/scaffold_project
+        ${CMAKE_CURRENT_BINARY_DIR}/include/cobs/config.h
+        ${CMAKE_CURRENT_BINARY_DIR}/include/cobs/version.h
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cobs
     COMPONENT Development
 )
 

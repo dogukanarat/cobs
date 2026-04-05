@@ -1,9 +1,9 @@
-/* scaffold_project.h - Main API header for scaffold_project library */
+/* cobs.h - Main API header for cobs library */
 
 /* All Rights Reserved */
 
-#ifndef INC_SCAFFOLD_PROJECT_H
-#define INC_SCAFFOLD_PROJECT_H
+#ifndef INC_COBS_H
+#define INC_COBS_H
 
 #ifdef __cplusplus
 extern "C"
@@ -15,10 +15,10 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "scaffold_project/config.h"
-#include "scaffold_project/version.h"
-#include "scaffold_project/export.h"
-#include "scaffold_project/scaffold_project_types.h"
+#include "cobs/config.h"
+#include "cobs/version.h"
+#include "cobs/export.h"
+#include "cobs/cobs_types.h"
 
 /* Configurations */
 
@@ -36,7 +36,7 @@ extern "C"
  *
  * @return Version string in format "major.minor.patch"
  */
-SCAFFOLD_PROJECT_API const char *scaffold_project_get_version(void);
+COBS_API const char *cobs_get_version(void);
 
 /**
  * @brief Add two integers with saturation on overflow/underflow
@@ -45,7 +45,7 @@ SCAFFOLD_PROJECT_API const char *scaffold_project_get_version(void);
  * @param b Second operand
  * @return Saturated sum of a and b
  */
-SCAFFOLD_PROJECT_API int32_t scaffold_project_add(int32_t a, int32_t b);
+COBS_API int32_t cobs_add(int32_t a, int32_t b);
 
 /**
  * @brief Multiply two integers with error handling
@@ -53,9 +53,9 @@ SCAFFOLD_PROJECT_API int32_t scaffold_project_add(int32_t a, int32_t b);
  * @param a First operand
  * @param b Second operand
  * @param result Pointer to store result
- * @return SCAFFOLD_PROJECT_SUCCESS on success, error code otherwise
+ * @return COBS_SUCCESS on success, error code otherwise
  */
-SCAFFOLD_PROJECT_API scaffold_project_status_t scaffold_project_multiply(
+COBS_API cobs_status_t cobs_multiply(
     int32_t a,
     int32_t b,
     int32_t *result);
@@ -66,9 +66,9 @@ SCAFFOLD_PROJECT_API scaffold_project_status_t scaffold_project_multiply(
  * @param input Input string to process
  * @param output Buffer to store processed string
  * @param outputSize Size of output buffer
- * @return SCAFFOLD_PROJECT_SUCCESS on success, error code otherwise
+ * @return COBS_SUCCESS on success, error code otherwise
  */
-SCAFFOLD_PROJECT_API scaffold_project_status_t scaffold_project_foo(
+COBS_API cobs_status_t cobs_foo(
     const char *input,
     char *output,
     size_t outputSize);
@@ -79,7 +79,7 @@ SCAFFOLD_PROJECT_API scaffold_project_status_t scaffold_project_foo(
  * @param value Value to validate
  * @return true if valid, false otherwise
  */
-SCAFFOLD_PROJECT_API bool scaffold_project_bar(int32_t value);
+COBS_API bool cobs_bar(int32_t value);
 
 /**
  * @brief Compute factorial of a number
@@ -87,10 +87,10 @@ SCAFFOLD_PROJECT_API bool scaffold_project_bar(int32_t value);
  * @param n Input number (must be >= 0 and <= 12)
  * @return Result structure with factorial value and status
  */
-SCAFFOLD_PROJECT_API scaffold_project_result_t scaffold_project_factorial(int32_t n);
+COBS_API cobs_result_t cobs_factorial(int32_t n);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* INC_SCAFFOLD_PROJECT_H */
+#endif /* INC_COBS_H */

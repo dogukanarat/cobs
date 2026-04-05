@@ -2,8 +2,8 @@
 
 /* All Rights Reserved */
 
-#ifndef INC_SCAFFOLD_PROJECT_CONFIG_H
-#define INC_SCAFFOLD_PROJECT_CONFIG_H
+#ifndef INC_COBS_CONFIG_H
+#define INC_COBS_CONFIG_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -12,13 +12,13 @@ extern "C" {
 #cmakedefine01 BUILD_SHARED_LIBS
 
 #if BUILD_SHARED_LIBS
-    #define SCAFFOLD_PROJECT_SHARED
+    #define COBS_SHARED
 #else
-    #define SCAFFOLD_PROJECT_STATIC
+    #define COBS_STATIC
 #endif
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* INC_SCAFFOLD_PROJECT_CONFIG_H */
+#endif /* INC_COBS_CONFIG_H */

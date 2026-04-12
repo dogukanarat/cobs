@@ -1,0 +1,43 @@
+config COBS
+    bool "COBS framing library"
+    default y
+    help
+        Enable the COBS (Consistent Overhead Byte Stuffing) framing library.
+
+config COBS_LOG_LEVEL
+    int "COBS log level"
+    default 2
+    depends on COBS
+    help
+        Set the log level for the COBS module:
+        0: Off
+        1: Error
+        2: Warning
+        3: Info
+        4: Debug
+
+config COBS_FRAME_SIZE
+    int "COBS on-wire fragment size"
+    default 244
+    depends on COBS
+    help
+        Size (in bytes) of a single encoded COBS fragment on the transport
+        wire. Also sizes the per-context RX accumulator and TX scratch
+        buffers. This is NOT the maximum message size — large messages are
+        split across multiple fragments. For BLE NUS, this must be <=
+        (negotiated ATT MTU - 3) so each fragment fits in one notification;
+        with CONFIG_BT_L2CAP_TX_MTU=247 the correct value is 244. Do not
+        change unless the BLE MTU changes.
+
+config COBS_MAX_MESSAGE_SIZE
+    int "COBS maximum reassembled message size"
+    default 4096
+    depends on COBS
+    help
+        Upper bound (in bytes) on a single reassembled user message. Sizes
+        the per-context reassembly buffer inside each cobs_framing_t. The
+        framing library splits outgoing messages larger than one fragment
+        into as many COBS fragments as required (capped at 255 fragments
+        per message). Set this to the largest CFL payload the application
+        will ever exchange on one transport. Each active framing context
+        reserves this much DRAM, so budget accordingly.

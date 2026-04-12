@@ -16,6 +16,7 @@ This is **cobs** - a C library template/scaffold project designed to be cloned a
 ## Build Commands
 
 ### Basic Build
+
 ```bash
 mkdir build && cd build
 cmake ..
@@ -23,6 +24,7 @@ make
 ```
 
 ### Build with Tests
+
 ```bash
 mkdir build && cd build
 cmake -DBUILD_TESTS=ON ..
@@ -33,12 +35,14 @@ ctest --verbose          # Run with detailed output
 ```
 
 ### Build Shared Library
+
 ```bash
 cmake -DBUILD_SHARED_LIBS=ON ..
 make
 ```
 
 ### Install
+
 ```bash
 mkdir build && cd build
 cmake ..
@@ -51,6 +55,7 @@ make install
 ```
 
 ### Code Formatting
+
 ```bash
 ./scripts/format.sh                           # Format all C files
 clang-format -i src/myfile.c                  # Format specific file
@@ -58,6 +63,7 @@ clang-format --dry-run --Werror src/file.c    # Check without modifying
 ```
 
 ### CI Scripts
+
 ```bash
 ./ci/debug.sh                                 # Clean debug build + run tests
 ./ci/release.sh                               # Release build (optimized)
@@ -79,6 +85,7 @@ The core feature of this scaffold is the intelligent migration script:
 **Input Format**: Provide the library name in **PascalCase** (e.g., `MyNewLib`, `JsonParser`, `HttpClient`).
 
 **How it works:**
+
 - Takes PascalCase input and generates four case variations automatically:
   - **snake_case**: `my_new_lib` (used in filenames: `my_new_lib.c`, `my_new_lib.h`)
   - **lowercase**: `mynewlib` (used in directories: `include/mynewlib/`, packages)
@@ -104,6 +111,7 @@ The core feature of this scaffold is the intelligent migration script:
 All source and header files follow a strict organizational template with labeled sections:
 
 **Headers (.h):**
+
 ```c
 /* filename.h - one line definition */
 /* All Rights Reserved */
@@ -128,6 +136,7 @@ extern "C" {
 ```
 
 **Source Files (.c):**
+
 ```c
 /* filename.c - one line definition */
 /* All Rights Reserved */
@@ -181,11 +190,13 @@ extern "C" {
 Enforced via `.clang-format` and `.editorconfig`:
 
 **Naming Conventions:**
+
 - Functions/variables: `camelCase` (e.g., `myFunction`, `localVariable`)
 - Defines/macros: `UPPER_CASE_WITH_UNDERSCORE` (e.g., `MAX_BUFFER_SIZE`)
 - Global variables: `PascalCase` (e.g., `GlobalCounter`)
 
 **Style Rules:**
+
 - Braces: Allman style (braces on new lines)
 - Pointers: Right-aligned, close to name (`int *ptr`, not `int* ptr`)
 - Indentation: 4 spaces, no tabs
@@ -193,13 +204,14 @@ Enforced via `.clang-format` and `.editorconfig`:
 - Function parameters: One per line for long signatures, single line for short ones
 
 **Example:**
+
 ```c
 void shortFunction(int param)
 {
     int *localVar = NULL;
 }
 
-status_t longFunction(
+int32_t longFunction(
     int32_t handleId,
     const credentials_t *credential,
     state_t *state,
@@ -216,6 +228,7 @@ status_t longFunction(
 ## CMake Build System Architecture
 
 **Key features:**
+
 - C99 standard enforced (public requirement)
 - Compiler warnings: `-Wall -Wextra -Wpedantic` (GCC/Clang), `/W4` (MSVC)
 - Symbol visibility control for shared libraries
@@ -227,11 +240,13 @@ status_t longFunction(
 - Automatic default to Release build if not specified
 
 **Build options:**
+
 - `BUILD_SHARED_LIBS` - Build shared library instead of static (default: OFF)
 - `BUILD_TESTS` - Build unit tests with Unity (default: OFF)
 - `BUILD_EXAMPLES` - Build example applications (default: OFF)
 
 **Installation outputs:**
+
 - Libraries → `/usr/local/lib/`
 - Headers → `/usr/local/include/cobs/`
 - CMake config → `/usr/local/lib/cmake/cobs/`
@@ -243,6 +258,7 @@ status_t longFunction(
 Uses Unity Test Framework (ThrowTheSwitch/Unity) with intelligent fallback mechanism:
 
 **Unity dependency resolution (automatic):**
+
 1. First tries to find Unity installed locally via:
    - pkg-config (Linux)
    - CMake find_package
@@ -251,12 +267,14 @@ Uses Unity Test Framework (ThrowTheSwitch/Unity) with intelligent fallback mecha
 3. Option to force FetchContent: `-DFORCE_FETCH_UNITY=ON`
 
 **Test properties:**
+
 - Test name: `cobs_unit_tests` (CTest)
 - Timeout: 30 seconds per test
 - Labels: "unit", "cobs"
 - Test files follow structure: setUp() → tests → tearDown() → main()
 
 **Adding new test files:**
+
 1. Create `test/test_mymodule.c`
 2. Update `test/CMakeLists.txt`:
    - Add to `target_sources(CobsUnitTest PRIVATE test_mymodule.c)`
@@ -269,8 +287,10 @@ See `test/README.md` for comprehensive Unity assertions reference.
 The `ci/` directory contains automation scripts for common development and deployment tasks:
 
 ### debug.sh - Debug Build & Test
+
 **Purpose**: Clean debug build with full test execution
 **Process**:
+
 1. Removes build directory completely
 2. Configures with `-DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON`
 3. Builds with debug symbols and no optimization
@@ -279,8 +299,10 @@ The `ci/` directory contains automation scripts for common development and deplo
 **Use**: Local development, CI/CD test pipelines, verifying changes
 
 ### release.sh - Release Build
+
 **Purpose**: Optimized production build
 **Process**:
+
 1. Optionally cleans build directory (`--clean` flag)
 2. Configures with `-DCMAKE_BUILD_TYPE=Release`
 3. Builds with `-O3` optimization, no debug symbols
@@ -289,8 +311,10 @@ The `ci/` directory contains automation scripts for common development and deplo
 **Use**: Production builds, performance testing, releases
 
 ### install.sh - Installation
+
 **Purpose**: Build and install library to system or custom location
 **Features**:
+
 - Auto-detects need for sudo (system paths vs user paths)
 - Supports custom install prefix
 - User-local install option (`--user` → `~/.local`)
@@ -300,6 +324,7 @@ The `ci/` directory contains automation scripts for common development and deplo
 **Use**: System installation, user installation, CI/CD deployment
 
 All scripts include:
+
 - Error handling with immediate exit on failure
 - Colored output (info/success/warning/error)
 - Progress tracking with step numbers
@@ -311,9 +336,11 @@ All scripts include:
 The `.github/workflows/` directory contains automated CI/CD workflows:
 
 ### ci.yml - Main CI Workflow
+
 **Purpose**: Comprehensive testing with matrix strategy
 
 **Matrix Configuration**:
+
 - Compilers: GCC and Clang
 - Library types: Static and Shared
 - Total: 4 configurations tested in parallel
@@ -321,6 +348,7 @@ The `.github/workflows/` directory contains automated CI/CD workflows:
 **Triggers**: push (master/main/develop), pull_request (master/main), workflow_dispatch
 
 **Process**:
+
 1. Installs dependencies (CMake, Clang, clang-format, clang-tidy)
 2. Caches CMake build directory (keyed by OS, compiler, library type, CMakeLists.txt)
 3. Configures CMake with matrix-specific options
@@ -331,11 +359,13 @@ The `.github/workflows/` directory contains automated CI/CD workflows:
 **Artifacts**: Test results and compiled libraries for each matrix configuration
 
 ### format-check.yml - Code Formatting Validation
+
 **Purpose**: Enforce clang-format compliance
 
 **Triggers**: push, pull_request, workflow_dispatch
 
 **Process**:
+
 1. Finds all .c and .h files in src/, include/, test/
 2. Runs clang-format --dry-run --Werror
 3. Fails if any formatting issues found
@@ -343,13 +373,15 @@ The `.github/workflows/` directory contains automated CI/CD workflows:
 **Action Required**: Run `./scripts/format.sh` to fix formatting issues
 
 ### static-analysis.yml - Static Code Analysis
+
 **Purpose**: Run clang-tidy static analysis
 
 **Triggers**: push, pull_request, workflow_dispatch
 
 **Process**:
+
 1. Configures CMake to generate compile_commands.json
-2. Runs clang-tidy with --warnings-as-errors='*' on all source files
+2. Runs clang-tidy with --warnings-as-errors='\*' on all source files
 3. Uses .clang-tidy configuration (13 check categories enabled)
 
 **Benefits**: Catches bugs, performance issues, readability problems early
@@ -357,6 +389,7 @@ The `.github/workflows/` directory contains automated CI/CD workflows:
 ## What This Scaffold Provides
 
 Template users receive:
+
 - Complete CMake build system with installation support
 - Unity test framework integration
 - Example CLI application demonstrating library usage (POSIX-only, easily customizable)
@@ -372,6 +405,7 @@ Template users receive:
 ## What Template Users Must Do
 
 After running migration.sh:
+
 1. Review all renamed files
 2. Update one-line descriptions in each file header
 3. Update copyright from "All Rights Reserved" to their license

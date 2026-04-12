@@ -27,9 +27,9 @@ extern "C"
  */
 typedef enum
 {
-    COBS_SUCCESS = 0,     /**< Operation successful */
-    COBS_ERROR = -1,      /**< Generic error */
-    COBS_ERROR_NULL = -2, /**< Null pointer error */
+    COBS_SUCCESS = 0,       /**< Operation successful */
+    COBS_ERROR = -1,        /**< Generic error */
+    COBS_ERROR_NULL = -2,   /**< Null pointer error */
     COBS_ERROR_INVALID = -3 /**< Invalid parameter error */
 } cobs_status_t;
 
@@ -38,7 +38,7 @@ typedef enum
  */
 typedef struct
 {
-    int32_t value;               /**< Result value */
+    int32_t value;        /**< Result value */
     cobs_status_t status; /**< Operation status */
 } cobs_result_t;
 
